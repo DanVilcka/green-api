@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GREEN-API Testing Interface</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="browser-window">
+            <!-- Браузерная рамка -->
+            <div class="browser-header">
+                <div class="browser-controls">
+                    <button class="control-btn close"></button>
+                    <button class="control-btn minimize"></button>
+                    <button class="control-btn maximize"></button>
+                </div>
+                <div class="browser-title">GREEN-API Testing Interface</div>
+            </div>
+
+            <!-- Основной контент -->
+            <div class="main-content">
+                <!-- Левая колонка -->
+                <div class="left-column">
+                    <div class="section-title">🚀 GREEN-API</div>
+                    <div class="section-subtitle">
+                        Тестирование методов WhatsApp API
+                    </div>
+
+                    <!-- Учетные данные -->
+                    <div class="form-section">
+                        <h3>🔐 Учетные данные API</h3>
+                        <div class="credentials-grid">
+                            <div class="input-group">
+                                <label for="idInstance">ID Instance:</label>
+                                <input
+                                    type="text"
+                                    id="idInstance"
+                                    placeholder="Введите ID вашего инстанса"
+                                />
+                            </div>
+                            <div class="input-group">
+                                <label for="apiToken"
+                                    >API Token Instance:</label
+                                >
+                                <input
+                                    type="text"
+                                    id="apiToken"
+                                    placeholder="Введите ваш API токен"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- API методы -->
+                    <div class="api-methods">
+                        <!-- Get Settings -->
+                        <div class="api-method">
+                            <h4>⚙️ Get Settings</h4>
+                            <p>Получить текущие настройки инстанса</p>
+                            <button
+                                class="btn btn-simple"
+                                onclick="getSettings()"
+                            >
+                                Получить настройки
+                            </button>
+                        </div>
+
+                        <!-- Get State Instance -->
+                        <div class="api-method">
+                            <h4>📊 Get State Instance</h4>
+                            <p>Получить состояние инстанса</p>
+                            <button
+                                class="btn btn-simple"
+                                onclick="getStateInstance()"
+                            >
+                                Получить состояние
+                            </button>
+                        </div>
+
+                        <!-- Send Message -->
+                        <div class="api-method">
+                            <h4>💬 Send Message</h4>
+                            <div class="method-form">
+                                <div class="input-group">
+                                    <label for="messagePhone"
+                                        >Номер телефона:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="messagePhone"
+                                        placeholder="79876543210@c.us"
+                                    />
+                                </div>
+                                <div class="input-group">
+                                    <label for="messageText"
+                                        >Текст сообщения:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="messageText"
+                                        placeholder="Введите текст сообщения"
+                                    />
+                                </div>
+                                <button
+                                    class="btn btn-simple"
+                                    onclick="sendMessage()"
+                                >
+                                    Отправить сообщение
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Send File By URL -->
+                        <div class="api-method">
+                            <h4>📎 Send File By URL</h4>
+                            <div class="method-form">
+                                <div class="input-group">
+                                    <label for="filePhone"
+                                        >Номер телефона:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="filePhone"
+                                        placeholder="79876543210@c.us"
+                                    />
+                                </div>
+                                <div class="input-group">
+                                    <label for="fileUrl">URL файла:</label>
+                                    <input
+                                        type="text"
+                                        id="fileUrl"
+                                        placeholder="https://example.com/file.jpg"
+                                    />
+                                </div>
+                                <div class="form-row two-columns">
+                                    <div class="input-group">
+                                        <label for="fileName">Имя файла:</label>
+                                        <input
+                                            type="text"
+                                            id="fileName"
+                                            placeholder="file.jpg"
+                                        />
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="fileCaption"
+                                            >Подпись:</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="fileCaption"
+                                            placeholder="Описание файла"
+                                        />
+                                    </div>
+                                </div>
+                                <button
+                                    class="btn btn-simple"
+                                    onclick="sendFileByUrl()"
+                                >
+                                    Отправить файл
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая колонка -->
+                <div class="right-column">
+                    <div class="response-header">
+                        <h3>📋 Ответы API</h3>
+                    </div>
+                    <textarea
+                        id="responseArea"
+                        class="response-area"
+                        readonly
+                        placeholder="Здесь будут отображаться ответы от API...
+Заполните учетные данные и начните тестирование!"
+                    ></textarea>
+                    <div class="response-controls">
+                        <button
+                            class="btn btn-secondary"
+                            onclick="clearResponse()"
+                        >
+                            Очистить
+                        </button>
+                        <button
+                            class="btn btn-secondary"
+                            onclick="copyResponse()"
+                        >
+                            Копировать
+                        </button>
+                        <button
+                            class="btn btn-secondary"
+                            onclick="exportLogs()"
+                            title="Сохранить логи в файл"
+                        >
+                            Экспорт
+                        </button>
+                        <button
+                            class="btn btn-secondary"
+                            onclick="showApiStats()"
+                            title="Показать статистику использования API"
+                        >
+                            Статистика
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Логотип GREEN API -->
+            <div class="green-api-logo">
+                <div class="logo-icon">G</div>
+                <div class="logo-text">GREEN API</div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
